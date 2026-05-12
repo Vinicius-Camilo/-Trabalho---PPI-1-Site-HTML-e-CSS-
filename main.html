@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celeste</title>
+    <link rel="icon" type="image/ico" href="./berry.ico">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #300523;
+            background-image: url('./background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: linear-gradient(180deg, rgba(104, 198, 226, 0.15) 100%, rgba(104, 198, 226, 0.1) 50%);
+            padding: 1%;
+            margin-bottom: 1%;
+            border-radius: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            z-index: 1;
+        }
+
+        nav a {
+            color: #ad292b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #ed7549;
+        }
+
+        a {
+            color: #ad292b;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .madeline {
+            position: absolute;
+            z-index: 0;
+            max-width: 50%;
+            width: 50%;
+            height: auto;
+            right: -5%;
+            top: 8%;
+            pointer-events: none;
+        }
+        .strawberry {
+            position: absolute;
+            z-index: 2;
+            max-width: 60%;
+            width: 60%;
+            height: auto;
+            left: 50%;
+            bottom: 10%;
+            opacity: 0.75;
+            pointer-events: none;
+        }
+
+        .logo {
+            max-width: 75%;
+            width: 60%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10% 0 0;
+        }
+
+        .video-frame {
+            width: 80%;
+            max-width: 90%;
+            aspect-ratio: 16 / 9;
+            border: 0;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            nav {
+                gap: 15px;
+                padding: 12px;
+            }
+
+            section {
+                padding: 15px;
+                margin: 30px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav a {
+                font-size: 14px;
+            }
+
+            section {
+                padding: 10px;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="main.html">Início</a>
+        <a href="intro.html">Introdução</a>
+        <a href="devs.html">Desenvolvedores</a>
+        <a href="personagens.html">Personagens</a>
+        <a href="gameplay.html">Gameplay</a>
+        <a href="niveis.html">Níveis</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+
+    <div class="logo-wrapper">
+        <img src="./madeline.png" alt="Madeline" class="madeline">
+        <img src="./strawberry.png" alt="Strawberry" class="strawberry">
+        <img src="./logo.png" alt="Celeste Logo" class="logo">
+    </div>
+
+    <div class="video-wrapper">
+        <iframe
+            class="video-frame"
+            src="https://www.youtube.com/embed/FqBj2IGg6Uw"
+            title="Vídeo do YouTube"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+    </div>
+
