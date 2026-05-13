@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celeste</title>
+    <title>Celeste - Personagens</title>
     <link rel="icon" type="image/ico" href="./Images/berry.ico">
     <style>
         * {
@@ -43,6 +43,32 @@
             text-shadow: none;
         }
 
+        :root {
+            --text-font: Roboto, Arial, monospace;
+            --text-size: 2em;
+            --text-color: #e0e0e0;
+            --text-glow: 0 0 8px rgba(0, 123, 255, 0.85);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--text-font);
+            font-size: 1.2em;
+            line-height: 1.5;
+            
+            color: var(--text-color);
+            text-shadow: var(--text-glow);
+            padding: 1%;
+            
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 1em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        main {
+            background: none;
+            border-radius: 0;
+        }
         nav a {
             color: #ad292b;
             text-decoration: none;
@@ -59,15 +85,12 @@
             color: #ed7549;
         }
 
-        a {
-            color: #ad292b;
-        }
-
         .logo-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
+            margin-bottom: 16%;
         }
 
         .madeline {
@@ -101,53 +124,29 @@
             z-index: 1;
         }
 
-        .video-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10% 0 0;
-        }
-
-        .video-frame {
-            width: 80%;
-            max-width: 90%;
-            aspect-ratio: 16 / 9;
-            border: 0;
-            border-radius: 1em;
-            box-shadow: 0 0.75em 1.875em rgba(0, 0, 0, 0.35);
-        }
-
-        h1, h2, h3 {
-            margin: 0;
-            margin-bottom: 1.875em;
-        }
-
         @media (max-width: 48em) {
             body {
                 padding: 0.9375em;
             }
 
             nav {
-                gap: 0.75em;
-                padding: 0.625em 0.875em;
-                font-size: 1em;
-            }
-
-            section {
-                padding: 0.9375em;
-                margin: 1.875em 0;
+                gap: 0.9375em;
+                padding: 0.75em;
             }
         }
 
         @media (max-width: 30em) {
             nav a {
                 font-size: 0.875em;
-                padding: 0.375em 0.5em;
+            }
+        }
+        @keyframes titleTween {
+            from {
+                left: -6px;
             }
 
-            section {
-                padding: 0.625em;
-                margin: 1.25em 0;
+            to {
+                left: 6px;
             }
         }
     </style>
@@ -168,14 +167,5 @@
         <img src="./Images/strawberry.png" alt="Strawberry" class="strawberry">
         <img src="./Images/logo.png" alt="Celeste Logo" class="logo">
     </div>
-
-    <div class="video-wrapper">
-        <iframe
-            class="video-frame"
-            src="https://www.youtube.com/embed/FqBj2IGg6Uw"
-            title="Vídeo do YouTube"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-        </iframe>
-    </div>
-
+</body>
+</html>

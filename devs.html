@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celeste - Desenvolvedores</title>
+    <link rel="icon" type="image/ico" href="./Images/berry.ico">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            max-width: 90%;
+            line-height: 1.6;
+            margin: auto;
+            padding: 5%;
+            background-color: #300523;
+            background-image: url('./Images/background.jpg');
+            background-size: cover;
+            background-attachment: scroll;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: linear-gradient(180deg, rgba(104, 198, 226, 0.15) 100%, rgba(104, 198, 226, 0.1) 50%);
+            padding: 0.4em;
+            border-radius: 0.75em;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.25em;
+            z-index: 1;
+            font-family: Roboto, Arial, monospace;
+            font-size: 1.125em;
+            width: 100%;
+            max-width: 75em;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: none;
+        }
+        #title {
+            font-family: 'Nunito', sans-serif;
+            font-size: 4.85em;
+            font-weight: bold;
+            text-align: left;
+            margin: 0;
+            line-height: 0.9em;
+        }
+        .titleWord {
+            position: relative;
+            filter: drop-shadow(4px 4px 0 #662c8a88);
+            animation-name: titleTween;
+            animation-duration: 1.2s;
+            animation-timing-function: ease-in-out;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+
+        #titleA {
+            color: #23e6e6;
+        }
+
+        #titleB {
+            color: hotpink;
+            animation-delay: 0.2s;
+        }
+
+        #titleC {
+            color: yellow;
+            animation-delay: 0.4s;
+        }
+
+        :root {
+            --text-font: Roboto, Arial, monospace;
+            --text-size: 2em;
+            --text-color: #e0e0e0;
+            --text-glow: 0 0 8px rgba(0, 123, 255, 0.85);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--text-font);
+            font-size: 1.2em;
+            line-height: 1.5;
+            
+            color: var(--text-color);
+            text-shadow: var(--text-glow);
+            padding: 1%;
+            
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 1em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        main {
+            background: none;
+            border-radius: 0;
+        }
+        nav a {
+            color: #ad292b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5em 0.75em;
+            border-radius: 0.375em;
+            display: inline-block;
+            font-size: inherit;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #ed7549;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 16%;
+        }
+
+        .maker-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10%;
+            z-index: 3;
+        }
+
+        .exok-logo {
+            max-height: 14.5em;
+            width: auto;
+            display: block;
+        }
+
+        .madeline {
+            position: absolute;
+            z-index: 0;
+            max-width: 50%;
+            width: 50%;
+            height: auto;
+            right: -5%;
+            top: 8%;
+            pointer-events: none;
+        }
+        .strawberry {
+            position: absolute;
+            z-index: 2;
+            max-width: 60%;
+            width: 60%;
+            height: auto;
+            left: 51%;
+            bottom: 10%;
+            opacity: 0.75;
+            pointer-events: none;
+        }
+
+        .logo {
+            max-width: 75%;
+            width: 60%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .devs-lead {
+            width: max-content;
+            max-width: 100%;
+            margin: 1.5rem auto 0;
+            padding: 0.85rem 1.25rem;
+            text-align: center;
+            white-space: nowrap;
+            font-size: clamp(0.9rem, 1.8vw, 1.4rem);
+        }
+
+        .devs-panel {
+            width: 100%;
+            max-width: 75em;
+            margin: 1.5rem auto 0;
+            padding: 1rem 1.25rem;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 1em;
+            color: var(--text-color);
+            text-shadow: var(--text-glow);
+            font-family: var(--text-font);
+            font-size: clamp(0.9rem, 1.8vw, 1.4rem);
+            line-height: 1.5;
+        }
+
+        .devs-panel h1 {
+            background: none;
+            padding: 0;
+            margin: 0 0 0.75rem;
+            text-align: center;
+            font-size: inherit;
+            color: inherit;
+            text-shadow: inherit;
+        }
+
+        .devs-panel p {
+            margin: 0.45rem 0;
+            font-size: inherit;
+        }
+
+        .devs-panel .dev-link {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.18s ease, text-decoration-color 0.18s ease;
+            cursor: pointer;
+        }
+
+        .devs-panel .dev-link:hover {
+            text-decoration: underline;
+            color: #ed7549; 
+        }
+
+        @media (max-width: 48em) {
+            body {
+                padding: 0.9375em;
+            }
+
+            nav {
+                gap: 0.9375em;
+                padding: 0.75em;
+            }
+        }
+
+        @media (max-width: 30em) {
+            nav a {
+                font-size: 0.875em;
+            }
+        }
+        @keyframes titleTween {
+            from {
+                left: -6px;
+            }
+
+            to {
+                left: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="main.html">Início</a>
+        <a href="intro.html">Introdução</a>
+        <a href="devs.html">Desenvolvedores</a>
+        <a href="chars.html">Personagens</a>
+        <a href="gameplay.html">Gameplay</a>
+        <a href="niveis.html">Níveis</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+
+    <div class="logo-wrapper">
+        <img src="./Images/madeline.png" alt="Madeline" class="madeline">
+        <img src="./Images/strawberry.png" alt="Strawberry" class="strawberry">
+        <img src="./Images/logo.png" alt="Celeste Logo" class="logo">
+    </div>
+
+    <h1>Desenvolvedores</h1>
+
+    <div class="maker-logos" role="group" aria-label="Makers logos">
+        <div id="title">
+            <div id="titleA" class="titleWord">MADDY</div>
+            <div id="titleB" class="titleWord">MAKES</div>
+            <div id="titleC" class="titleWord">GAMES</div>
+        </div>
+        <img src="./Images/exok_logo.png" alt="Exok Logo" class="exok-logo">
+    </div>
+    <h1 class="devs-lead">Celeste foi desenvolvido por uma equipe liderada por Madeline Stephanie Thorson.</h1>
+    <main>
+        <section class="devs-panel">
+            <h1>Equipe de Desenvolvimento</h1>
+              <p><strong><a href="https://www.maddymakesgames.com/" class="dev-link" >Maddy Thorson</a></strong> - Designer e Programadora Adicional</p>
+              <p><strong><a href="https://noelberry.ca/" class="dev-link" >Noel Berry</a></strong> - Programador Principal</p>
+              <p><strong><a href="https://amora.ink/" class="dev-link" >Amora B.</a></strong> - Artista de Conceitos</p>
+              <p><strong><a href="https://saint11.art/" class="dev-link" >Pedro "Saint11" Medeiros</a></strong> - Artista de Níveis</p>
+              <p><strong><a href="https://lena.fyi/" class="dev-link" >Lena Raine</a></strong> - Música Original</p>
+              <p><strong><a href="https://powerupaudio.com/" class="dev-link" >Power Up Audio</a></strong> - Efeitos Sonoros</p>
+              <p><strong><a href="https://www.heidy.page/" class="dev-link" >Heidy Motta</a></strong> - Área Legal e Redes Sociais</p>
+        </section>
+    </main>
+</body>
+</html>

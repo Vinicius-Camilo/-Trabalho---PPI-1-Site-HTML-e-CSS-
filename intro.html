@@ -11,16 +11,14 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            max-width: 90%;
             line-height: 1.6;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: auto;
+            padding: 5%;
             background-color: #300523;
             background-image: url('./Images/background.jpg');
             background-size: cover;
-            background-attachment: fixed;
-            color: #e0e0e0;
+            background-attachment: scroll;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -28,22 +26,52 @@
 
         nav {
             background: linear-gradient(180deg, rgba(104, 198, 226, 0.15) 100%, rgba(104, 198, 226, 0.1) 50%);
-            padding: 1%;
-            margin-bottom: 1%;
-            border-radius: 100px;
+            padding: 0.4em;
+            border-radius: 0.75em;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 1.25em;
             z-index: 1;
+            font-family: Roboto, Arial, monospace;
+            font-size: 1.125em;
+            width: 100%;
+            max-width: 75em;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: none;
         }
 
+        :root {
+            --text-font: Roboto, Arial, monospace;
+            --text-size: 1.2em;
+            --text-color: #e0e0e0;
+            --text-glow: 0 0 8px rgba(0, 123, 255, 0.85);
+        }
+
+        main, section, p, h1, h2, h3 {
+            font-family: var(--text-font);
+            font-size: var(--text-size);
+            line-height: 1.5;
+            color: var(--text-color);
+            text-shadow: var(--text-glow);
+            padding: 1%;
+        }
+
+        main, h1, h2, h3 {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 30px;
+        }
         nav a {
             color: #ad292b;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
+            padding: 0.5em 0.75em;
+            border-radius: 0.375em;
+            display: inline-block;
+            font-size: inherit;
         }
 
         nav a:hover {
@@ -55,11 +83,16 @@
             color: #ad292b;
         }
 
+        a[href*="steampowered"] {
+            color: #1e90ff;
+        }
+
         .logo-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
+            margin-bottom: 8%;
         }
 
         .madeline {
@@ -78,7 +111,7 @@
             max-width: 60%;
             width: 60%;
             height: auto;
-            left: 50%;
+            left: 51%;
             bottom: 10%;
             opacity: 0.75;
             pointer-events: none;
@@ -93,35 +126,70 @@
             z-index: 1;
         }
 
-        h1, h2, h3 {
-            margin: 0;
-            margin-bottom: 10px;
+        .screenshots-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75em;
+            flex-wrap: wrap;
+            margin: 1.5em 0;
         }
 
-        @media (max-width: 768px) {
+        .screenshots-row img {
+            width: auto;
+            max-width: 32%;
+            height: auto;
+            border-radius: 1.125em;
+            display: block;
+        }
+
+        .requirements-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2% 0;
+            font-family: var(--text-font);
+            font-size: 0.8em;
+            color: var(--text-color);
+            background-color: rgba(0, 0, 0, 0.85);
+            overflow: hidden;
+        }
+        .requirements-table th,
+        .requirements-table td {
+            padding: 0.9375em;
+            text-align: left;
+            border: 1px solid rgba(104, 198, 226, 0.5);
+        }
+
+        .requirements-table th {
+            background-color: rgba(104, 198, 226, 0.2);
+            font-weight: bold;
+        }
+
+        @media (max-width: 48em) {
             body {
-                padding: 15px;
+                padding: 0.9375em;
             }
 
             nav {
-                gap: 15px;
-                padding: 12px;
+                gap: 0.9375em;
+                padding: 0.75em;
             }
 
             section {
-                padding: 15px;
-                margin: 30px 0;
+                padding: 0.9375em;
+                margin: 1.875em 0;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 30em) {
             nav a {
-                font-size: 14px;
+                font-size: 0.875em;
             }
 
             section {
-                padding: 10px;
-                margin: 20px 0;
+                padding: 2%;
+                margin: 1% 0;
             }
         }
     </style>
@@ -131,7 +199,7 @@
         <a href="main.html">Início</a>
         <a href="intro.html">Introdução</a>
         <a href="devs.html">Desenvolvedores</a>
-        <a href="personagens.html">Personagens</a>
+        <a href="chars.html">Personagens</a>
         <a href="gameplay.html">Gameplay</a>
         <a href="niveis.html">Níveis</a>
         <a href="contato.html">Contato</a>
@@ -142,5 +210,82 @@
         <img src="./Images/strawberry.png" alt="Strawberry" class="strawberry">
         <img src="./Images/logo.png" alt="Celeste Logo" class="logo">
     </div>
+    <main>
+        <section>
+            <p>Ajude Madeline a enfrentar seus demônios internos em sua jornada até o topo da Montanha Celeste, nesse jogo de plataforma super afiado dos criadores de <a href="https://store.steampowered.com/app/251470/TowerFall_Ascension/"> <em>TowerFall</em></a>.</p>
+            
+            <p>Desbrave centenas de desafios meticulosos, descubra segredos complicados e desvende o mistério da montanha.</p>
+            
+            <p>Uma aventura para um jogador focada em narrativa, com gostinho de infância, que conta com um elenco encantador e uma história emocionante de autodescoberta </p>
+
+            <div class="screenshots-row" aria-label="Screenshots 1 a 3 do jogo Celeste">
+                <img src="./Images/Screenshots/01.png" alt="Screenshot 1 de Celeste">
+                <img src="./Images/Screenshots/02.png" alt="Screenshot 2 de Celeste">
+                <img src="./Images/Screenshots/03.png" alt="Screenshot 3 de Celeste">
+            </div>
+            
+            <p>Uma montanha gigantesca com mais de 700 telas de desafios de plataforma exigentes e segredos ardilosos, Capítulos de Lado B brutais para desbloquear, criados apenas para os alpinistas mais ousados </p>
+            
+            <p>Finalista do prêmio "Excelência em Áudio" do IGF, com mais de 2 horas de música original lideradas por um piano impressionante e batidas memoráveis de sintetizadores</p>
+            
+            <p>Os controles são simples e acessíveis - salte, faça dash aéreo e escale -, mas com camadas de profundidade para dominar, onde cada morte é uma lição. </p>
+                
+            <p>Renascimentos incrivelmente rápidos permitem que você continue escalando enquanto descobre os mistérios da montanha e desbrava seus perigos.</p>
+
+            <div class="screenshots-row" aria-label="Screenshots 4 a 6 do jogo Celeste">
+                <img src="./Images/Screenshots/04.png" alt="Screenshot 4 de Celeste">
+                <img src="./Images/Screenshots/05.png" alt="Screenshot 5 de Celeste">
+                <img src="./Images/Screenshots/06.png" alt="Screenshot 6 de Celeste">
+            </div>
+
+            <h2>Requisitos Mínimos</h2>
+            
+            <table class="requirements-table">
+                <thead>
+                    <tr>
+                        <th>Requisito</th>
+                        <th>Windows</th>
+                        <th>macOS</th>
+                        <th>steamOS / Linux</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sistema Operacional</strong></td>
+                        <td>Windows 7 ou posterior</td>
+                        <td>Lion 10.7.5, 32/64-bit</td>
+                        <td>glibc 2.17+, 32/64-bit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Processador</strong></td>
+                        <td>Intel Core i3 M380</td>
+                        <td>Intel Core i3 M380</td>
+                        <td>Intel Core i3 M380</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Memória RAM</strong></td>
+                        <td>2 GB</td>
+                        <td>2 GB</td>
+                        <td>2 GB</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Placa de Vídeo</strong></td>
+                        <td>Intel HD 4000</td>
+                        <td>OpenGL 3.0+ (2.1 com extensões ARB são suportadas)</td>
+                        <td>OpenGL 3.0+ (2.1 com extensões ARB são suportadas)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Espaço em Disco</strong></td>
+                        <td>1200 MB de espaço disponível</td>
+                        <td>1200 MB de espaço disponível</td>
+                        <td>1200 MB de espaço disponível</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+</body>
+</html>
 
 
