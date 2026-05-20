@@ -18,7 +18,6 @@
             background-color: #300523;
             background-image: url('./Images/background.jpg');
             background-size: cover;
-            background-attachment: scroll;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -57,12 +56,22 @@
             
             color: var(--text-color);
             text-shadow: var(--text-glow);
-            padding: 1%;
+            padding: 2%;
             
+            justify-content: center;
             background-color: rgba(0, 0, 0, 0.4);
             border-radius: 1em;
             margin-left: auto;
             margin-right: auto;
+        }
+        section {
+            font-family: var(--text-font);
+            font-size: 1.2em;
+            line-height: 1.5;
+            
+            color: var(--text-color);
+            text-shadow: var(--text-glow);
+            padding: 1%;
         }
 
         main {
@@ -140,14 +149,149 @@
                 font-size: 0.875em;
             }
         }
-        @keyframes titleTween {
-            from {
-                left: -6px;
-            }
+        .characters {
+            width: 100%;
+            max-width: 75em;
+            margin: 1.5em auto 4em auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25em;
+        }
 
-            to {
-                left: 6px;
-            }
+        .thumbnails {
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .thumbnail {
+            background: rgba(0,0,0,0.45);
+            border: 2px solid rgba(255,255,255,0.06);
+            padding: 0.4em;
+            border-radius: 0.6em;
+            width: 5.5rem;
+            text-align: center;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .thumbnail img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 0.4em;
+        }
+
+        .thumbnail .caption {
+            font-size: 0.9rem;
+            margin-top: 0.35rem;
+        }
+
+        .thumbnail.active {
+            outline: 2px solid rgba(255,255,255,0.25);
+            transform: translateY(-4px);
+        }
+
+        .selected-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5em;
+            align-items: center;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .selected-area .cover {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            min-height: 16rem;
+        }
+
+        .cover-image {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) translateY(-6px);
+            max-width: 80%;
+            border-radius: 1em;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.35);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 180ms ease, transform 220ms cubic-bezier(.2,.8,.2,1);
+        }
+
+        @keyframes downUp {
+            0% { transform: translate(-50%, -50%) translateY(-8px); opacity: 0; }
+            40% { transform: translate(-50%, -50%) translateY(10px); opacity: 0.2; }
+            100% { transform: translate(-50%, -50%) translateY(0); opacity: 1; }
+        }
+
+        .char-input {
+            position: absolute;
+            left: -9999px;
+        }
+
+        #char-madeline:checked ~ .selected-area .cover-image.madeline,
+        #char-badeline:checked ~ .selected-area .cover-image.badeline,
+        #char-theo:checked ~ .selected-area .cover-image.theo,
+        #char-granny:checked ~ .selected-area .cover-image.granny,
+        #char-oshiro:checked ~ .selected-area .cover-image.oshiro,
+        #char-bird:checked ~ .selected-area .cover-image.bird {
+            opacity: 1;
+            pointer-events: auto;
+            animation: downUp 260ms both ease;
+        }
+
+        #char-madeline:checked ~ .thumbnails label[for="char-madeline"],
+        #char-badeline:checked ~ .thumbnails label[for="char-badeline"],
+        #char-theo:checked ~ .thumbnails label[for="char-theo"],
+        #char-granny:checked ~ .thumbnails label[for="char-granny"],
+        #char-oshiro:checked ~ .thumbnails label[for="char-oshiro"],
+        #char-bird:checked ~ .thumbnails label[for="char-bird"] {
+            outline: 2px solid rgba(255,255,255,0.25);
+            transform: translateY(-4px);
+        }
+
+        .info {
+            color: var(--text-color);
+            background: rgba(0,0,0,0.35);
+            padding: 1.25em;
+            border-radius: 0.75em;
+            position: absolute;
+            top: 50%;
+            left: 70%;
+            transform: translateY(-50%);
+            width: calc(50% - 0.75em);
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease;
+        }
+
+        .char-name {
+            margin: 0 0 0.5em 0;
+            font-size: 1.5rem;
+        }
+
+        #char-madeline:checked ~ .selected-area .info.madeline,
+        #char-badeline:checked ~ .selected-area .info.badeline,
+        #char-theo:checked ~ .selected-area .info.theo,
+        #char-granny:checked ~ .selected-area .info.granny,
+        #char-oshiro:checked ~ .selected-area .info.oshiro,
+        #char-bird:checked ~ .selected-area .info.bird {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+            animation: downUp 260ms both ease;
+        }
+
+        @media (max-width: 60em) {
+            .selected-area { grid-template-columns: 1fr; }
+            .cover-image { max-width: 60%; }
         }
     </style>
 </head>
@@ -167,5 +311,82 @@
         <img src="./Images/strawberry.png" alt="Strawberry" class="strawberry">
         <img src="./Images/logo.png" alt="Celeste Logo" class="logo">
     </div>
+    <main>
+        <h1>Personagens</h1>
+
+        <section class="characters">
+            <input class="char-input" type="radio" name="char" id="char-madeline" checked>
+            <input class="char-input" type="radio" name="char" id="char-badeline">
+            <input class="char-input" type="radio" name="char" id="char-theo">
+            <input class="char-input" type="radio" name="char" id="char-granny">
+            <input class="char-input" type="radio" name="char" id="char-oshiro">
+            <input class="char-input" type="radio" name="char" id="char-bird">
+
+            <div class="thumbnails" role="list">
+                <label class="thumbnail" for="char-madeline">
+                    <img src="./Images/chars/madeline_portrait.gif" alt="Madeline portrait">
+                    <div class="caption">Madeline</div>
+                </label>
+
+                <label class="thumbnail" for="char-badeline">
+                    <img src="./Images/chars/badeline_portrait.gif" alt="Badeline portrait">
+                    <div class="caption">Badeline</div>
+                </label>
+
+                <label class="thumbnail" for="char-theo">
+                    <img src="./Images/chars/theo_portrait.gif" alt="Theo portrait">
+                    <div class="caption">Theo</div>
+                </label>
+
+                <label class="thumbnail" for="char-granny">
+                    <img src="./Images/chars/Granny_laugh.gif" alt="Granny portrait">
+                    <div class="caption">Granny</div>
+                </label>
+                <label class="thumbnail" for="char-oshiro">
+                    <img src="./Images/chars/Oshiro_portrait.gif" alt="Oshiro portrait">
+                    <div class="caption">Oshiro</div>
+                </label>
+                <label class="thumbnail" for="char-bird">
+                    <img src="./Images/chars/bird.gif" alt="Bird portrait">
+                    <div class="caption">Bird</div>
+                </label>
+            </div>
+
+            <div class="selected-area">
+                <div class="cover">
+                    <img class="cover-image madeline" src="./Images/chars/madeline_cover2.jpg" alt="Madeline full">
+                    <img class="cover-image badeline" src="./Images/chars/badeline_cover2.png" alt="Badeline Cover">
+                    <img class="cover-image theo" src="./Images/chars/theo_cover2.png" alt="Theo full">
+                    <img class="cover-image granny" src="./Images/chars/Granny_cover2.png" alt="Granny full">
+                    <img class="cover-image oshiro" src="./Images/chars/Oshiro_cover2.png" alt="Oshiro full">
+                    <img class="cover-image bird" src="./Images/chars/bird_cover2.png" alt="Bird full">
+                </div>
+                <div class="info madeline">
+                    <h2 class="char-name">Madeline</h2>
+                    <p class="description">A protagonista corajosa que escala a Montanha Celeste enquanto aprende a lidar com sua ansiedade, medos e inseguranças enquanto ajuda seus novos amigos no caminho.</p>
+                </div>
+                <div class="info badeline">
+                    <h2 class="char-name">Badeline</h2>
+                    <p class="description">Antagonista principal da história, uma parte de Madeline que representa seus medos e inseguranças, tentando convencer a protagonista a desistir de escalar a Montanha.</p>
+                </div>
+                <div class="info theo">
+                    <h2 class="char-name"> Theo</h2>
+                    <p class="description">Um jovem alpinista que também escala a montanha Celeste tirando fotos de tudo para a rede social Instapix, logo se tornando um dos melhores amigos de Madeline.</p>
+                </div>
+                <div class="info granny">
+                    <h2 class="char-name">Granny</h2>
+                    <p class="description">Uma senhora que vive ao pé da montanha que questiona a coragem de Madeline no inicio de sua jornada, mas eventualmente se aproxima da protagonista e a ajuda com seus conselhos valiosos e conhecimento da montanha.</p>
+                </div>
+                <div class="info oshiro">
+                    <h2 class="char-name">Oshiro</h2>
+                    <p class="description">Um fantasma residente do hotel "Celestial Resort" em que trabalhava no meio da montanha, que agora se encontra abandonado. Oshiro é uma alma perdida que se vê responsável pelo hotel mesmo após sua morte.</p>
+                </div>
+                <div class="info bird">
+                    <h2 class="char-name">Bird</h2>
+                    <p class="description">Um pássaro misterioso que aparece em momentos-chave, funcionando como guia ao jogador oferecendo tutoriais durante a jornada. Ele é bem próximo da Granny e normalmente está ao redor dela.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
