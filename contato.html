@@ -120,6 +120,99 @@
             position: relative;
             z-index: 1;
         }
+        /* Formulário de contato */
+        .contact-form {
+            max-width: 48em;
+            margin: 1.25em auto;
+            padding: 1.25em;
+            background: rgba(255,255,255,0.04);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.95em;
+            color: var(--text-color);
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-color);
+            padding: 0.6em 0.75em;
+            border-radius: 0.5em;
+            outline: none;
+            font-family: var(--text-font);
+            font-size: 1em;
+        }
+        input[type="text"], input[type="email"], select {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: black;
+            padding: 0.6em 0.75em;
+            border-radius: 0.5em;
+            outline: none;
+            font-family: var(--text-font);
+            font-size: 1em;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            box-shadow: var(--text-glow);
+            border-color: rgba(0,123,255,0.9);
+        }
+
+        textarea { resize: vertical; }
+
+        .form-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            color: var(--text-color);
+            font-size: 0.9em;
+        }
+
+        .btn {
+            background: linear-gradient(180deg,#ed7549,#ad292b);
+            color: #fff;
+            border: none;
+            padding: 0.6em 1.1em;
+            border-radius: 0.6em;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(173,41,43,0.18);
+        }
+
+        .btn:hover { transform: translateY(-2px); }
+
+        .contact-info { margin-top: 1rem; color: var(--text-color); }
+
+        @media (max-width: 680px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .madeline { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -140,8 +233,57 @@
     </div>
     <main>
         <section>
-            <p>Desenvolvedores de Celeste: contact@exok.com</p>
-            <p>Desenvolvedor deste site: vinicius.camilo@estudante.iftm.edu.br</p>
+            <h1>Fale Conosco</h1>
+
+            <form class="contact-form" action="#" method="post" novalidate>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" placeholder="Seu nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assunto">Assunto</label>
+                        <input type="text" id="assunto" name="assunto" placeholder="Resumo da mensagem">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motivo">Motivo</label>
+                        <select id="motivo" name="motivo">
+                            <option>Comentário</option>
+                            <option>Dúvida</option>
+                            <option>Sugestão</option>
+                            <option>Reclamação</option>
+                            <option>Bugs</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="6" placeholder="Escreva sua mensagem aqui..."></textarea>
+                </div>
+
+                <div class="form-meta">
+                    <label class="checkbox">
+                        <input type="checkbox" name="consentimento" checked>
+                        Aceito que este é um formulário ilustrativo e não enviará mensagens de verdade.
+                    </label>
+
+                    <button type="submit" class="btn">Enviar mensagem</button>
+                </div>
+            </form>
+
+            <div class="contact-info">
+                <p>Desenvolvedores de Celeste: contact@exok.com</p>
+                <p>Desenvolvedor deste site: vinicius.camilo@estudante.iftm.edu.br</p>
+            </div>
         </section>
     </main>
 
