@@ -33,12 +33,29 @@
             flex-wrap: wrap;
             gap: 1.25em;
             z-index: 1;
+            font-family: Roboto, Arial, monospace;
             font-size: 1.125em;
             width: 100%;
             max-width: 75em;
             margin-left: auto;
             margin-right: auto;
             text-shadow: none;
+        }
+
+        nav a {
+            color: #ad292b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5em 0.75em;
+            border-radius: 0.375em;
+            display: inline-block;
+            font-size: inherit;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #ed7549;
         }
 
         :root {
@@ -60,20 +77,6 @@
         main, h1, h2, h3 {
             background-color: rgba(0, 0, 0, 0.4);
             border-radius: 30px;
-        }
-        nav a {
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            padding: 0.5em 0.75em;
-            border-radius: 0.375em;
-            display: inline-block;
-            font-size: inherit;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-            color: #ed7549;
         }
 
         a {

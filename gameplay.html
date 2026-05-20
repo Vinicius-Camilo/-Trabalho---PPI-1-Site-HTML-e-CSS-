@@ -6,12 +6,8 @@
         <title>Celeste - Gameplay</title>
         <link rel="icon" type="image/ico" href="./Images/berry.ico">
         <style>
-            /* Reset the box model so spacing is predictable everywhere. */
-            * {
-                box-sizing: border-box;
-            }
+            * { box-sizing: border-box; }
 
-            /* Page background and overall document layout. */
             body {
                 max-width: 90%;
                 line-height: 1.6;
@@ -20,14 +16,12 @@
                 background-color: #300523;
                 background-image: url('./Images/background.jpg');
                 background-size: cover;
-                background-attachment: scroll;
+
                 display: flex;
                 flex-direction: column;
                 min-height: 100vh;
                 color: #e0e0e0;
             }
-
-            /* Top navigation bar that links to the other pages. */
             nav {
                 background: linear-gradient(180deg, rgba(104, 198, 226, 0.15) 100%, rgba(104, 198, 226, 0.1) 50%);
                 padding: 0.4em;
@@ -44,11 +38,8 @@
                 max-width: 75em;
                 margin-left: auto;
                 margin-right: auto;
-                text-shadow: none;
             }
-
-            /* Shared color and font settings used across the whole page. */
-            :root {
+            :root{
                 --text-font: Roboto, Arial, monospace;
                 --text-color: #e0e0e0;
                 --text-glow: 0 0 8px rgba(0, 123, 255, 0.85);
@@ -57,364 +48,97 @@
                 --accent: #ed7549;
                 --accent-soft: rgba(237, 117, 73, 0.18);
             }
-
-            /* Consistent typography for the main headings and paragraphs. */
-            h1, h2, h3, p {
-                font-family: var(--text-font);
-                line-height: 1.5;
-                color: var(--text-color);
-                text-shadow: var(--text-glow);
+            h1,h2,h3,p{
+                font-family:var(--text-font);
             }
 
-            /* Default link color used outside the navigation. */
-            a {
-                color: #ad292b;
+            nav{
+                width:100%;
+                max-width:75em;
+                margin:0 auto 1.5rem;
+                display:flex;
+                gap:1.25em;
+                flex-wrap:wrap;
+                justify-content:space-around;
+                align-items:center;
+                padding:.4em;
+                border-radius:.75em;
+                background:linear-gradient(180deg, rgba(104,198,226,.15) 100%, rgba(104,198,226,.1) 50%);
+                font-size:1.125em;
+                z-index:1;
+            }
+            nav a{ text-decoration:none; font-weight:700; padding:.5em .75em; border-radius:.375em; transition:all .25s ease; color:#ad292b; }
+            nav a:hover{ color:var(--accent); text-decoration:underline; }
+
+            h1,h2,h3,p{ margin:0; color:var(--text-color); line-height:1.5; text-shadow:var(--text-glow); }
+
+            .logo-wrapper{ position:relative; display:flex; justify-content:center; align-items:center; margin-bottom:10%; }
+            .logo{ width:60%; max-width:75%; height:auto; display:block; position:relative; z-index:1; }
+            .madeline, .strawberry{ position:absolute; pointer-events:none; height:auto; }
+            .madeline{ right:-5%; top:8%; width:50%; z-index:1; }
+            .strawberry{ left:51%; bottom:10%; width:60%; opacity:.75; z-index:2; }
+
+            main{ width:100%; max-width:75em; margin:0 auto; }
+            .gameplay-shell{ display:grid; gap:1.25rem; }
+
+            .hero-panel, .section-panel, .info-card{
+                background:var(--panel-bg);
+                border:1px solid var(--panel-border);
+                border-radius:1.25rem;
+                box-shadow:0 1rem 2rem rgba(0,0,0,.25);
+                backdrop-filter:blur(2px);
             }
 
-            /* Styling for the navigation links and hover feedback. */
-            nav a {
-                text-decoration: none;
-                font-weight: bold;
-                transition: all 0.3s ease;
-                padding: 0.5em 0.75em;
-                border-radius: 0.375em;
-                display: inline-block;
-                font-size: inherit;
+            .hero-panel{ padding:1.5rem; display:grid; gap:1.25rem; }
+            .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:1rem; align-items:center; }
+            .hero-panel h1{ font-size:clamp(1.8rem,4vw,3.25rem); }
+            .hero-panel p{ font-size:clamp(1rem,1.8vw,1.15rem); max-width:70ch; }
+
+            .section-panel{ padding:1.25rem; }
+            .section-panel h2{ margin-bottom:.85rem; font-size:clamp(1.25rem,2vw,1.75rem); }
+            .section-panel p{ margin-bottom:1rem; }
+
+            .mechanics-list{ margin:0 0 1rem; padding-left:1.25rem; }
+            .mechanics-list li{ margin:.45rem 0; line-height:1.4; }
+
+            .feature-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:1rem; align-items:center; }
+
+            .media-frame{ margin:0; overflow:hidden; border-radius:1rem; border:1px solid rgba(255,255,255,.08); background:rgba(0,0,0,.35); display:flex; flex-direction:column; }
+            .media-frame img{ display:block; width:100%; height:auto; object-fit:contain; object-position:center; }
+            .media-caption{ padding:.75rem .9rem; font-size:.92rem; color:#d7d7d7; border-top:1px solid rgba(255,255,255,.08); }
+
+            .tech-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+            .info-card{ overflow:hidden; }
+            .info-card h3{ padding:1rem 1rem .45rem; font-size:1.05rem; }
+            .tech-grid .media-frame{ height:12rem; display:flex; align-items:center; justify-content:center; }
+            .tech-grid .media-frame img{ width:100%; height:100%; object-fit:contain; }
+            .info-card p{ padding:0 1rem 1rem; font-size:.95rem; }
+
+            .image-strip{ display:grid; gap:.75rem; }
+            .image-strip img{ width:100%; display:block; border-radius:1rem; aspect-ratio:16/9; object-fit:contain; }
+
+            .flow-list{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; counter-reset:step; margin:0; padding:0; list-style:none; }
+            .flow-list li{ position:relative; padding:1rem 1rem 1rem 3.25rem; border-radius:1rem; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); }
+            .flow-list li::before{ counter-increment:step; content:counter(step); position:absolute; left:1rem; top:1rem; width:1.8rem; height:1.8rem; border-radius:999px; display:grid; place-items:center; background:var(--accent); color:#fff; font-weight:700; }
+
+            .note{ padding:.85rem 1rem; border-left:3px solid var(--accent); background:rgba(255,255,255,.05); border-radius:.75rem; }
+
+            @media (max-width:64em){
+                .hero-grid, .feature-grid, .tech-grid, .flow-list, .image-strip{ grid-template-columns:1fr; }
             }
-
-            nav a:hover {
-                text-decoration: underline;
-                color: var(--accent);
+            @media (max-width:48em){
+                body{ padding:.9375em; }
+                nav{ gap:.9375em; padding:.75em; }
+                .hero-panel, .section-panel{ padding:1rem; }
+                .tech-grid .media-frame{ height:auto; }
             }
-
-            /* Wrapper that positions the logo, character art, and strawberry overlay. */
-            .logo-wrapper {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                margin-bottom: 10%;
-            }
-
-            /* Decorative Madeline image placed behind the logo. */
-            .madeline {
-                position: absolute;
-                z-index: 1;
-                max-width: 50%;
-                width: 50%;
-                height: auto;
-                right: -5%;
-                top: 8%;
-                pointer-events: none;
-            }
-
-            /* Decorative strawberry image layered over the logo. */
-            .strawberry {
-                position: absolute;
-                z-index: 2;
-                max-width: 60%;
-                width: 60%;
-                height: auto;
-                left: 51%;
-                bottom: 10%;
-                opacity: 0.75;
-                pointer-events: none;
-            }
-
-            /* Main Celeste logo centered on the page. */
-            .logo {
-                max-width: 75%;
-                width: 60%;
-                height: auto;
-                display: block;
-                position: relative;
-                z-index: 1;
-            }
-
-            /* Limits the content width and centers the gameplay sections. */
-            main {
-                width: 100%;
-                max-width: 75em;
-                margin: 0 auto;
-            }
-
-            /* Vertical spacing between each major content block. */
-            .gameplay-shell {
-                display: grid;
-                gap: 1.25rem;
-            }
-
-            /* Shared panel styling for hero and content cards. */
-            .hero-panel,
-            .section-panel,
-            .info-card {
-                background: var(--panel-bg);
-                border: 1px solid var(--panel-border);
-                border-radius: 1.25rem;
-                box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25);
-                backdrop-filter: blur(2px);
-            }
-
-            /* Large opening panel with the main gameplay summary. */
-            .hero-panel {
-                padding: 1.5rem;
-                display: grid;
-                gap: 1.25rem;
-            }
-
-            /* Two-column layout for the opening hero block. */
-            .hero-grid {
-                display: grid;
-                grid-template-columns: 1.15fr 0.85fr;
-                gap: 1rem;
-                align-items: center;
-            }
-
-            /* Visual card that sits on the right side of the hero. */
-            .hero-visual {
-                overflow: hidden;
-            }
-
-            .hero-visual p {
-                margin: 0;
-            }
-
-            /* Big title in the hero panel. */
-            .hero-panel h1 {
-                margin: 0;
-                font-size: clamp(1.8rem, 4vw, 3.25rem);
-                background: none;
-                padding: 0;
-                border-radius: 0;
-            }
-
-            /* Summary text under the hero title. */
-            .hero-panel p {
-                margin: 0;
-                font-size: clamp(1rem, 1.8vw, 1.15rem);
-                max-width: 70ch;
-            }
-
-            /* Row of short gameplay highlights. */
-            .stat-row {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.75rem;
-            }
-
-            /* Pill-shaped labels for the main mechanics. */
-            .stat-chip {
-                padding: 0.6rem 0.9rem;
-                border-radius: 999px;
-                background: rgba(255, 255, 255, 0.06);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                color: #f2f2f2;
-                font-size: 0.92rem;
-            }
-
-            /* Generic section panel used for the rest of the page. */
-            .section-panel {
-                padding: 1.25rem;
-            }
-
-            /* Section titles inside each panel. */
-            .section-panel h2 {
-                margin: 0 0 0.85rem;
-                background: none;
-                padding: 0;
-                border-radius: 0;
-                font-size: clamp(1.25rem, 2vw, 1.75rem);
-            }
-
-            /* Paragraph spacing inside content sections. */
-            .section-panel p {
-                margin: 0 0 1rem;
-                font-size: 1rem;
-            }
-
-            /* Compact, semantic list for mechanics/bullets used in the feature grid. */
-            .mechanics-list {
-                margin: 0 0 1rem;
-                padding-left: 1.25rem;
-                color: var(--text-color);
-                text-shadow: var(--text-glow);
-            }
-
-            .mechanics-list li {
-                margin: 0.45rem 0;
-                line-height: 1.4;
-            }
-
-            /* Two-column layout for text on the left and media on the right. */
-            .feature-grid {
-                display: grid;
-                grid-template-columns: 1.15fr 0.85fr;
-                gap: 1rem;
-                align-items: center;
-            }
-
-            /* Frame used for screenshots or GIFs. */
-            .media-frame {
-                margin: 0;
-                overflow: hidden;
-                aspect-ratio: 16 / 9;
-                border-radius: 1rem;
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                background: rgba(0, 0, 0, 0.35);
-            }
-
-            /* Makes media fill the frame without stretching awkwardly. */
-            .media-frame img {
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: contain; /* show full image inside the frame (letterbox if needed) */
-                object-position: center;
-            }
-
-            /* Caption text under the featured image. */
-            .media-caption {
-                padding: 0.75rem 0.9rem;
-                font-size: 0.92rem;
-                color: #d7d7d7;
-                border-top: 1px solid rgba(255, 255, 255, 0.08);
-            }
-
-            /* Three-card grid for the main mechanics. */
-            .tech-grid {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 1rem;
-            }
-
-            /* Individual card for each technique. */
-            .info-card {
-                overflow: hidden;
-            }
-
-            /* Card title for each mechanic. */
-            .info-card h3 {
-                margin: 0;
-                padding: 1rem 1rem 0.45rem;
-                font-size: 1.05rem;
-                background: none;
-                border-radius: 0;
-            }
-
-            /* Card body text. */
-            .info-card p {
-                margin: 0;
-                padding: 0 1rem 1rem;
-                font-size: 0.95rem;
-            }
-
-            /* Numbered list built as a grid for easy reading. */
-            .flow-list {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 1rem;
-                counter-reset: step;
-                margin: 0;
-                padding: 0;
-                list-style: none;
-            }
-
-            /* Each step in the numbered guide. */
-            .flow-list li {
-                position: relative;
-                padding: 1rem 1rem 1rem 3.25rem;
-                border-radius: 1rem;
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                font-family: var(--text-font);
-                color: var(--text-color);
-                text-shadow: var(--text-glow);
-            }
-
-            /* Circular step number displayed before each item. */
-            .flow-list li::before {
-                counter-increment: step;
-                content: counter(step);
-                position: absolute;
-                left: 1rem;
-                top: 1rem;
-                width: 1.8rem;
-                height: 1.8rem;
-                border-radius: 999px;
-                display: grid;
-                place-items: center;
-                background: var(--accent);
-                color: #fff;
-                font-weight: bold;
-                text-shadow: none;
-            }
-
-            /* Small image strip used to suggest an alternate GIF layout. */
-            .image-strip {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 0.75rem;
-            }
-
-            /* Images inside the strip share the same crop and shape. */
-            .image-strip img {
-                width: 100%;
-                display: block;
-                border-radius: 1rem;
-                aspect-ratio: 16 / 9;
-                object-fit: cover;
-            }
-
-            /* Highlighted note that explains how the layout can be reused. */
-            .note {
-                margin: 0;
-                padding: 0.85rem 1rem;
-                border-left: 3px solid var(--accent);
-                background: rgba(255, 255, 255, 0.05);
-                border-radius: 0.75rem;
-            }
-
-            /* Collapse multi-column layouts into a single column on medium screens. */
-            @media (max-width: 64em) {
-                .hero-grid,
-                .feature-grid,
-                .tech-grid,
-                .flow-list,
-                .image-strip {
-                    grid-template-columns: 1fr;
-                }
-            }
-
-            /* Reduce spacing on tablets and smaller screens. */
-            @media (max-width: 48em) {
-                body {
-                    padding: 0.9375em;
-                }
-
-                nav {
-                    gap: 0.9375em;
-                    padding: 0.75em;
-                }
-
-                .hero-panel,
-                .section-panel {
-                    padding: 1rem;
-                }
-            }
-
-            /* Make the hero title slightly smaller on very small screens. */
-            @media (max-width: 30em) {
-                nav a {
-                    font-size: 0.875em;
-                }
-                .hero-panel h1 {
-                    font-size: 1.65rem;
-                }
+            @media (max-width:30em){
+                nav a{ font-size:.875em; }
+                .hero-panel h1{ font-size:1.65rem; }
             }
         </style>
     </head>
     <body>
-        <!-- Top navigation reused across the site for page-to-page access. -->
         <nav>
             <a href="main.html">Início</a>
             <a href="intro.html">Introdução</a>
@@ -425,16 +149,13 @@
             <a href="contato.html">Contato</a>
         </nav>
 
-        <!-- Decorative header art that keeps the page visually consistent with the rest of the site. -->
         <div class="logo-wrapper">
             <img src="./Images/madeline.png" alt="Madeline" class="madeline">
             <img src="./Images/strawberry.png" alt="Strawberry" class="strawberry">
             <img src="./Images/logo.png" alt="Celeste Logo" class="logo">
         </div>
 
-        <!-- Main gameplay content organized into a clear reading flow. -->
         <main class="gameplay-shell">
-            <!-- Opening summary: gives the page's main idea in one glance. -->
             <section class="hero-panel" aria-labelledby="gameplay-title">
                 <div class="hero-grid">
                     <div>
@@ -449,8 +170,6 @@
                     </figure>
                 </div>
             </section>
-
-            <!-- Explains the gameplay feeling and shows a larger screenshot or GIF next to the text. -->
             <section class="section-panel" aria-labelledby="flow-title">
                 <div class="feature-grid">
                     <div>
@@ -473,16 +192,19 @@
                             <li>Outras pequenas mecânicas juntas tornam o movimento fluido sem retirar o desafio.</li>
                         </ul>
                     </div>
-                    <figure class="media-frame">
-                        <img src="./Images/gameplay/Celeste-Coyote-Time.gif" alt="Coyote Time em Celeste">
-                        <figcaption class="media-caption">Coyote Time em Celeste mostrando a personagem pulando mesmo depois de sair da plataforma</figcaption>
-                        <img src="./Images/gameplay/Celeste-Forgiveness.gif" alt="Forgiveness">
-                        <figcaption class="media-caption">Mesmo após errar a plataforma, o personagem desliza para ela, dando uma chance de recuperação</figcaption>
-                    </figure>
+                    <div class="image-strip">
+                        <figure class="media-frame">
+                            <img src="./Images/gameplay/Celeste-Coyote-Time.gif" alt="Coyote Time em Celeste">
+                            <figcaption class="media-caption">Coyote Time em Celeste mostrando a personagem pulando mesmo depois de sair da plataforma</figcaption>
+                        </figure>
+                        <figure class="media-frame">
+                            <img src="./Images/gameplay/Celeste-Forgiveness.gif" alt="Forgiveness">
+                            <figcaption class="media-caption">Mesmo após errar a plataforma, o personagem desliza para ela, dando uma chance de recuperação</figcaption>
+                        </figure>
+                    </div>
                 </div>
             </section>
 
-            <!-- Three visual cards that break the mechanics into easy-to-scan pieces. -->
             <section class="section-panel" aria-labelledby="tech-title">
                 <h2 id="tech-title">Técnicas em destaque</h2>
                 <div class="tech-grid">

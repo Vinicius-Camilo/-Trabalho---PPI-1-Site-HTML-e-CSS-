@@ -3,11 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Celeste - Personagens</title>
+        <title>Celeste - Níveis</title>
         <link rel="icon" type="image/ico" href="./Images/berry.ico">
         <style>
             * {
                 box-sizing: border-box;
+            }
+
+            :root {
+                --text-font: Roboto, Arial, monospace;
+                --text-color: #e0e0e0;
+                --text-glow: 0 0 8px rgba(0, 123, 255, 0.85);
+                --panel-bg: rgba(0, 0, 0, 0.45);
+                --panel-border: rgba(104, 198, 226, 0.22);
+                --accent: #ed7549;
+                --accent-soft: rgba(237, 117, 73, 0.18);
             }
 
             body {
@@ -22,6 +32,8 @@
                 display: flex;
                 flex-direction: column;
                 min-height: 100vh;
+                color: var(--text-color);
+                font-family: var(--text-font);
             }
 
             nav {
@@ -43,32 +55,6 @@
                 text-shadow: none;
             }
 
-            :root {
-                --text-font: Roboto, Arial, monospace;
-                --text-size: 2em;
-                --text-color: #e0e0e0;
-                --text-glow: 0 0 8px rgba(0, 123, 255, 0.85);
-            }
-
-            h1, h2, h3 {
-                font-family: var(--text-font);
-                font-size: 1.2em;
-                line-height: 1.5;
-                
-                color: var(--text-color);
-                text-shadow: var(--text-glow);
-                padding: 1%;
-                
-                background-color: rgba(0, 0, 0, 0.4);
-                border-radius: 1em;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            main {
-                background: none;
-                border-radius: 0;
-            }
             nav a {
                 color: #ad292b;
                 text-decoration: none;
@@ -85,17 +71,25 @@
                 color: #ed7549;
             }
 
+            h1, h2, h3, p {
+                font-family: var(--text-font);
+                color: var(--text-color);
+                text-shadow: var(--text-glow);
+                margin: 0;
+                line-height: 1.5;
+            }
+
             .logo-wrapper {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 position: relative;
-                margin-bottom: 16%;
+                margin-bottom: 8%;
             }
 
             .madeline {
                 position: absolute;
-                z-index: 0;
+                z-index: 1;
                 max-width: 50%;
                 width: 50%;
                 height: auto;
@@ -103,6 +97,7 @@
                 top: 8%;
                 pointer-events: none;
             }
+
             .strawberry {
                 position: absolute;
                 z-index: 2;
@@ -124,18 +119,168 @@
                 z-index: 1;
             }
 
-            .chars-wrapper {
+            main {
                 width: 100%;
-                display: flex;
-                justify-content: center;
-                margin-top: 10rem;
+                max-width: 75em;
+                margin: 0 auto;
+                display: grid;
+                gap: 1.25rem;
             }
 
-            .chars {
-                max-width: 75%;
-                width: 60%;
-                height: auto;
+            .intro-panel,
+            .levels-panel {
+                background: var(--panel-bg);
+                border: 1px solid var(--panel-border);
+                border-radius: 1.25rem;
+                box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25);
+                backdrop-filter: blur(2px);
+                padding: 1.25rem;
+            }
+
+            .intro-panel {
+                display: grid;
+                gap: 0.8rem;
+            }
+
+            .intro-panel h1 {
+                font-size: clamp(1.8rem, 4vw, 3.2rem);
+            }
+
+            .intro-panel p {
+                font-size: clamp(1rem, 1.8vw, 1.08rem);
+                max-width: 100%;
+                align-content: justify;
+            }
+
+            .level-meta {
                 display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-top: 0.25rem;
+            }
+
+            .meta-chip {
+                background: var(--accent-soft);
+                border: 1px solid rgba(237, 117, 73, 0.32);
+                color: var(--text-color);
+                border-radius: 999px;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.95rem;
+            }
+
+            .levels-panel h2 {
+                font-size: clamp(1.25rem, 2vw, 1.8rem);
+                margin-bottom: 1rem;
+            }
+
+            .levels-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 1rem;
+            }
+
+            .level-card {
+                overflow: hidden;
+                border-radius: 1rem;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                background: rgba(255, 255, 255, 0.05);
+                box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+                min-height: 100%;
+            }
+
+            .level-card figure {
+                margin: 0;
+                position: relative;
+                aspect-ratio: 16 / 9;
+                background: linear-gradient(135deg, rgba(52, 8, 31, 0.95), rgba(16, 34, 72, 0.9));
+            }
+
+            .level-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .level-card .level-image-contain {
+                object-fit: contain;
+                object-position: center;
+                padding: 0.45rem;
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            .level-fallback {
+                width: 100%;
+                height: 100%;
+                display: grid;
+                place-items: center;
+                text-align: center;
+                padding: 1rem;
+                background:
+                    radial-gradient(circle at 30% 25%, rgba(104, 198, 226, 0.22), transparent 35%),
+                    linear-gradient(135deg, rgba(52, 8, 31, 0.98), rgba(16, 34, 72, 0.92));
+            }
+
+            .level-number {
+                position: absolute;
+                top: 0.8rem;
+                left: 0.8rem;
+                background: rgba(0, 0, 0, 0.55);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                padding: 0.3rem 0.65rem;
+                border-radius: 999px;
+                font-weight: bold;
+                letter-spacing: 0.04em;
+            }
+
+            .level-body {
+                padding: 1rem;
+                display: grid;
+                gap: 0.5rem;
+            }
+
+            .level-body h3 {
+                font-size: 1.05rem;
+            }
+
+            .level-body p {
+                font-size: 0.96rem;
+                color: #ddd;
+                text-shadow: none;
+            }
+
+            .level-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .level-tag {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.3rem 0.6rem;
+                border-radius: 999px;
+                background: rgba(237, 117, 73, 0.12);
+                border: 1px solid rgba(237, 117, 73, 0.24);
+                font-size: 0.85rem;
+            }
+
+            .note-panel {
+                padding: 1rem 1.1rem;
+                border-left: 3px solid var(--accent);
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 0.85rem;
+            }
+
+            .note-panel p {
+                text-shadow: none;
+            }
+
+            @media (max-width: 64em) {
+                .levels-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
             }
 
             @media (max-width: 48em) {
@@ -147,20 +292,28 @@
                     gap: 0.9375em;
                     padding: 0.75em;
                 }
+
+                .logo-wrapper {
+                    margin-bottom: 12%;
+                }
+
+                .intro-panel,
+                .levels-panel {
+                    padding: 1rem;
+                }
+
+                .levels-grid {
+                    grid-template-columns: 1fr;
+                }
             }
 
             @media (max-width: 30em) {
                 nav a {
                     font-size: 0.875em;
                 }
-            }
-            @keyframes titleTween {
-                from {
-                    left: -6px;
-                }
 
-                to {
-                    left: 6px;
+                .intro-panel h1 {
+                    font-size: 1.65rem;
                 }
             }
         </style>
@@ -182,5 +335,198 @@
             <img src="./Images/logo.png" alt="Celeste Logo" class="logo">
         </div>
 
+        <main>
+            <section class="intro-panel" aria-labelledby="niveis-title">
+                <h1 id="niveis-title">Capítulos</h1>
+                <p>
+                    Celeste é divido em capítulos, cada um com uma curva própria de desafio, tema e escolha de desafios e música cuidadosamente desenhados, escritos e tocados para contar a história do jogo de maneira envolvente e emocionante de um jeito divertido e agradável.
+                </p>
+            </section>
+
+            <section class="levels-panel" aria-labelledby="levels-grid-title">
+                <h2 id="levels-grid-title">Seleção de fases</h2>
+                <div class="levels-grid">
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">01</span>
+                            <img src="./Images/levels/PrologueAndEpilogueIcon.webp" alt="Capítulo 1 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 01 - Prólogo</h3>
+                            <p>Primeiro contato com o jogo, focado em ensinar a movimentação básica e introduzir os personagens Madeline, Granny e Bird.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Tutorial</span>
+                                <span class="level-tag">Ritmo leve</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">02</span>
+                            <img src="./Images/levels/ForsakenCityIcon.webp" alt="Capítulo 2 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 02 - Forsaken City</h3>
+                            <p>Primeira seção de gameplay do jogo, introduz mais mecanicas do jogo como dashes, dash refills e morangos, Theo também é introduzido neste capítulo.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Tutorial</span>
+                                <span class="level-tag">Primeiros Passos</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">03</span>
+                            <img src="./Images/levels/OldSiteIcon.webp" alt="Capítulo 3 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 03 - Old Site</h3>
+                            <p>A maior parte se passa durante um sonho de Madeline, introduz novas mecanicas e a personagem Badeline.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Primeiro Confronto</span>
+                                <span class="level-tag">Tensão</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">04</span>
+                            <img src="./Images/levels/CelestialResortIcon.webp" alt="Capítulo 4 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 04 - Celestial Resort</h3>
+                            <p>Ocorre no decrépito hotel onde Sr. Oshiro reside, Madeline tem que enfrenta-lo para conseguir sair e continuar sua jornada.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Timing</span>
+                                <span class="level-tag">Obstáculos móveis</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">05</span>
+                            <img src="./Images/levels/GoldenRidgeIcon.webp" alt="Capítulo 5 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 05 - Golden Ridge</h3>
+                            <p>Se passa na parte com ventos fortes, com desafios de controle e precisão e salas mais abertas.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Vento</span>
+                                <span class="level-tag">Controle</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">06</span>
+                            <img src="./Images/levels/MirrorTempleIcon.webp" alt="Capítulo 6 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 06 - Mirror Temple</h3>
+                            <p>Uma fase com muito menos linearidade que as outras, com salas escuras e design similar ao de labirintos.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Escuridão</span>
+                                <span class="level-tag">Escolha</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">07</span>
+                            <img src="./Images/levels/125px-ReflectionIcon.webp" alt="Capítulo 7 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 07 - Reflection</h3>
+                            <p>Um dos níveis mais longos de <em>Celeste</em>, que desafia a paciência e a persistência do jogador e o recompensa brilhantemente ao seu final.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Tempo</span>
+                                <span class="level-tag">Constância</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">08</span>
+                            <img src="./Images/levels/SummitIcon.webp" alt="Capítulo 8 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 08 - The Summit</h3>
+                            <p>Finalmente o pico da montanha, o ponto mais alto da jornada em <em>Celeste</em> em que todos os seus conhecimentos até agora são testados.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Desafio</span>
+                                <span class="level-tag">Teste</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">09</span>
+                            <img src="./Images/levels/PrologueAndEpilogueIcon.webp" alt="Capítulo 9 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 09 - Epilogue</h3>
+                            <p>Capítulo final do jogo principal, que encerra a história via a descida do topo, o capitulo mais curto.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Encerramento</span>
+                                <span class="level-tag">Conclusão</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">10</span>
+                            <img src="./Images/levels/CoreIcon.webp" alt="Capítulo 10 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 10 - Core</h3>
+                            <p>Um dos capitulos mais dificeis do jogo, que testa as habilidades do jogador de maneira intensa e punitiva, exigindo maior precisão e solução de problemas.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Desafio</span>
+                                <span class="level-tag">Punitivo</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">11</span>
+                            <img src="./Images/levels/FarewellIcon.webp" alt="Capítulo 11 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Capítulo 11 - Farewell</h3>
+                            <p>Capítulo lançado como DLC gratuita, extremamente longo, desafiador e emocionante, exigindo mecânicas avançadas do jogador e um encerramento definitivo à história.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">DLC</span>
+                                <span class="level-tag">Final</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="level-card">
+                        <figure>
+                            <span class="level-number">12</span>
+                            <img src="./Images/levels/Cassette.png" alt="Capítulo 12 em Celeste" class="level-image-contain">
+                        </figure>
+                        <div class="level-body">
+                            <h3>Alternate Sides</h3>
+                            <p>Em todos os capítulos é possivel achar um colecionavel que adiciona uma versão alternativa da fase, normalmente bem mais dificil e curta.</p>
+                            <div class="level-tags">
+                                <span class="level-tag">Alternativo</span>
+                                <span class="level-tag">Conquista</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
     </body>
 </html>
