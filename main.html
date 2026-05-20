@@ -112,26 +112,79 @@
             border: 0;
             border-radius: 1em;
             box-shadow: 0 0.75em 1.875em rgba(0, 0, 0, 0.35);
+            margin-bottom: 10%;
         }
 
+
+        .stores
+        {
+            width: 100%;
+            box-sizing: border-box;
+            float: left;
+            margin-bottom: 2%;
+            font: Arial, sans-serif;
+            font-size: 1em;
+        }
+        .stores .store {
+            width: 48%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .store img {
+            width: 100px;
+        }
+
+        .stores .consoles { 
+            width: 100%;
+            float: left;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .stores .consoles a
+        {
+            width: 25%;
+            padding: 1%;
+            box-sizing: border-box;
+            background: transparent;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-right: 3%;
+            transition: background 0.1s, border 0.2s;
+            margin-bottom: 3%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.15rem;
+            gap: 0.5em;
+        }
+        .stores .consoles a:nth-child(3n) { margin-right: 0; }
+        .stores .consoles a img { width: 32px; flex: 0 0 auto; }
+        .stores .consoles a span { margin: 0; display: block; }
+        .stores .consoles a.store-switch { background: #e60012; }
+        .stores .consoles a.store-ps4 { background: #0072ce; }
+        .stores .consoles a.store-xb1 { background: #107c10; }
+        .stores .consoles a.store-steam { background: #282e39; }
+        .stores .consoles a.store-egs { background: #444; }
+        .stores .consoles a.store-itch { background: #fa5c5c; }
+        .stores .consoles a:hover {background: #222; border: 2px solid #fff; }
 
         @media (max-width: 48em) {
-            body {
-                padding: 0.9375em;
-            }
-
-            nav {
-                gap: 0.75em;
-                padding: 0.625em 0.875em;
-                font-size: 1em;
-            }
-
+            .content .stores .consoles a { text-align: center; }
+            .content .stores .consoles a img { width: 32px; float: none; }
+            .content .stores .consoles a span { display: none; }
         }
 
-        @media (max-width: 30em) {
-            nav a {
-                font-size: 0.875em;
-                padding: 0.375em 0.5em;
+        @media (min-width: 48.001em) {
+            .stores .consoles a {
+                font-size: 1.35rem;
             }
         }
     </style>
@@ -162,4 +215,18 @@
             allowfullscreen>
         </iframe>
     </div>
+
+    <div class="stores">
+        <div class="consoles">
+            <a href="https://www.nintendo.com/games/detail/celeste-switch" class="store-switch" target="_blank" rel="noopener noreferrer"><img src="./Images/Stores/switch.png" alt="Nintendo Switch"><span><strong>Nintendo Switch</strong></span></a>
+            <a href="https://www.playstation.com/en-ca/games/celeste-ps4/" class="store-ps4" target="_blank" rel="noopener noreferrer"><img src="./Images/Stores/ps4.png" alt="PlayStation 4"><span><strong>PlayStation 4</strong></span></a>
+            <a href="https://www.microsoft.com/en-ca/store/p/celeste/bwmql2rpwbhb" class="store-xb1" target="_blank" rel="noopener noreferrer"><img src="./Images/Stores/xb1.png" alt="Xbox One"><span><strong>Xbox One</strong></span></a>
+            <a href="https://mattmakesgames.itch.io/celeste" class="store-itch" target="_blank" rel="noopener noreferrer"><img src="./Images/Stores/itch.png" alt="itch.io"><span><strong>itch.io</strong></span></a>
+            <a href="http://store.steampowered.com/app/504230/Celeste/" class="store-steam" target="_blank" rel="noopener noreferrer"><img src="./Images/Stores/steam.png" alt="Steam"><span><strong>Steam</strong></span></a>
+            <a href="https://www.epicgames.com/store/en-US/product/celeste/home" class="store-egs" target="_blank" rel="noopener noreferrer"><img src="./Images/Stores/epic.png" alt="Epic Games Store"><span><strong>Epic Games Store</strong></span></a>
+        </div>
+     </div>
+
+</body>
+</html>
 
