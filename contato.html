@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Celeste - Personagens</title>
+        <link rel="icon" type="image/ico" href="./Images/berry.ico">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                max-width: 90%;
+                line-height: 1.6;
+                margin: auto;
+                padding: 5%;
+                background-color: #300523;
+                background-image: url('./Images/background.jpg');
+                background-size: cover;
+                background-attachment: scroll;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            nav {
+                background: linear-gradient(180deg, rgba(104, 198, 226, 0.15) 100%, rgba(104, 198, 226, 0.1) 50%);
+                padding: 0.4em;
+                border-radius: 0.75em;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1.25em;
+                z-index: 1;
+                font-family: Roboto, Arial, monospace;
+                font-size: 1.125em;
+                width: 100%;
+                max-width: 75em;
+                margin-left: auto;
+                margin-right: auto;
+                text-shadow: none;
+            }
+
+            :root {
+                --text-font: Roboto, Arial, monospace;
+                --text-size: 2em;
+                --text-color: #e0e0e0;
+                --text-glow: 0 0 8px rgba(0, 123, 255, 0.85);
+            }
+
+            h1, h2, h3 {
+                font-family: var(--text-font);
+                font-size: 1.2em;
+                line-height: 1.5;
+                
+                color: var(--text-color);
+                text-shadow: var(--text-glow);
+                padding: 1%;
+                
+                background-color: rgba(0, 0, 0, 0.4);
+                border-radius: 1em;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            main {
+                background: none;
+                border-radius: 0;
+            }
+            nav a {
+                color: #ad292b;
+                text-decoration: none;
+                font-weight: bold;
+                transition: all 0.3s ease;
+                padding: 0.5em 0.75em;
+                border-radius: 0.375em;
+                display: inline-block;
+                font-size: inherit;
+            }
+
+            nav a:hover {
+                text-decoration: underline;
+                color: #ed7549;
+            }
+
+            .logo-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                margin-bottom: 16%;
+            }
+
+            .madeline {
+                position: absolute;
+                z-index: 0;
+                max-width: 50%;
+                width: 50%;
+                height: auto;
+                right: -5%;
+                top: 8%;
+                pointer-events: none;
+            }
+            .strawberry {
+                position: absolute;
+                z-index: 2;
+                max-width: 60%;
+                width: 60%;
+                height: auto;
+                left: 51%;
+                bottom: 10%;
+                opacity: 0.75;
+                pointer-events: none;
+            }
+
+            .logo {
+                max-width: 75%;
+                width: 60%;
+                height: auto;
+                display: flex;
+                position: relative;
+                z-index: 1;
+            }
+
+            .chars-wrapper {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: 10rem;
+            }
+
+            .chars {
+                max-width: 75%;
+                width: 60%;
+                height: auto;
+                display: flex;
+            }
+
+            @media (max-width: 48em) {
+                body {
+                    padding: 0.9375em;
+                }
+
+                nav {
+                    gap: 0.9375em;
+                    padding: 0.75em;
+                }
+            }
+
+            @media (max-width: 30em) {
+                nav a {
+                    font-size: 0.875em;
+                }
+            }
+            @keyframes titleTween {
+                from {
+                    left: -6px;
+                }
+
+                to {
+                    left: 6px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="main.html">Início</a>
+            <a href="intro.html">Introdução</a>
+            <a href="devs.html">Desenvolvedores</a>
+            <a href="chars.html">Personagens</a>
+            <a href="gameplay.html">Gameplay</a>
+            <a href="niveis.html">Níveis</a>
+            <a href="contato.html">Contato</a>
+        </nav>
+
+        <div class="logo-wrapper">
+            <img src="./Images/madeline.png" alt="Madeline" class="madeline">
+            <img src="./Images/strawberry.png" alt="Strawberry" class="strawberry">
+            <img src="./Images/logo.png" alt="Celeste Logo" class="logo">
+        </div>
+
+    </body>
+</html>
